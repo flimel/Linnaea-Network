@@ -1,3 +1,9 @@
+<?php
+
+$conn = new PDO('mysql:dbname=linnaeanetwork', 'root')
+
+?>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -18,23 +24,13 @@
     </thead>
 
     <tbody>
+<?php foreach ($conn->query('SELECT name, year FROM info') as $row): ?>
       <tr>
-        <td><a href="profile.html">octakitty1</a></td>
+        <td><a href="profile.html"><?= $row[0] ?></a></td>
 
-        <td>2010</td>
+        <td><?= $row[1] ?></td>
       </tr>
-
-      <tr>
-        <td>octakitty2</td>
-
-        <td>2010</td>
-      </tr>
-
-      <tr>
-        <td>octakitty3</td>
-
-        <td>2010</td>
-      </tr>
+<?php endforeach; ?>
     </tbody>
   </table>
 </body>
