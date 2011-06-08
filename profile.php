@@ -2,6 +2,11 @@
 
 $conn = new PDO('mysql:dbname=linnaeanetwork', 'root');
 
-$row = $conn->query('SELECT name, year FROM info')->fetch();
+$username = substr($_SERVER['PATH_INFO'], 1);
+
+$stmt = $conn->prepare('SELECT name, year FROM info WHERE username = ?');
+$stmt->execute(array($username));
+
+$row = $stmt->fetch();
 
 require 'profile.html';
